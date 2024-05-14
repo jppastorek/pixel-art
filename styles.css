@@ -17,6 +17,7 @@ body {
     font-family: 'Space Mono', monospace;
     color: #072227;
     gap: 40px;
+    padding: 10px;
 }
 
 #canvas {
@@ -25,15 +26,12 @@ body {
     border: 2px solid black;
     border-radius: 3px;
     margin: 10px;
-    margin-top: 30px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
-}
-
-#canvas:hover {
     cursor: pointer;
 }
+
 
 #wrapper {
     display: flex;

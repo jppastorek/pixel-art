@@ -111,6 +111,7 @@ paintButton.addEventListener("click", () => {
   paintColor = colorPicker.value;
   erase = false;
   getColor = false;
+  canvas.style.cursor = "url(./icons/artist.png)";
 });
 
 getColorButton.addEventListener("click", () => {
