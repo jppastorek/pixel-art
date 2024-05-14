@@ -5,6 +5,11 @@ const paintButton = document.getElementById("paint");
 const select = document.getElementById("select");
 const colorPicker = document.getElementById("color");
 
+
+// need to build a color dropper, a color saver, and undo/redo
+// this will probably require moving to react to save state
+// also need to optimize for mobile
+
 const buttons = [resetButton, eraseButton, paintButton];
 
 let lastSize = 8;
@@ -36,14 +41,14 @@ const createGrid = (size) => {
     let pixel = document.createElement("div");
     pixel.classList.add("square");
     pixel.addEventListener("click", (event) => {
-      square.backgroundColor = paintColor;
+      square.backgroundColor = erase ? "white" : paintColor;
       square.borderColor = erase ? "lightgrey" : paintColor;
       pixel.style.backgroundColor = square.backgroundColor;
       pixel.style.borderColor = square.borderColor;
     });
     pixel.addEventListener("mouseover", (event) => {
       if (paintActive) {
-        square.backgroundColor = paintColor;
+        square.backgroundColor = erase ? "white" : paintColor;
         square.borderColor = erase ? "lightgrey" : paintColor;
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
@@ -51,7 +56,7 @@ const createGrid = (size) => {
     });
     pixel.addEventListener("mouseout", (event) => {
       if (paintActive) {
-        square.backgroundColor = paintColor;
+        square.backgroundColor = erase ? "white" : paintColor;
         square.borderColor = erase ? "lightgrey" : paintColor;
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
