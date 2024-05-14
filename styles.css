@@ -22,7 +22,8 @@ body {
 #canvas {
     height: 480px;
     width: 480px;
-    border: 3px solid black;
+    border: 2px solid black;
+    border-radius: 3px;
     margin: 10px;
     margin-top: 30px;
     display: grid;
@@ -42,6 +43,14 @@ body {
     align-items: center;
 }
 
+#utilities {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
 #tools {
     display: flex;
     flex-direction: column;
@@ -49,6 +58,41 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+#colors {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+/* input[type="color"] {
+    cursor: pointer;
+    height: var(--utility-comp-height);
+    width: var(--utility-comp-width);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 9px #999;
+} */
+
+#color {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    border: none;
+    cursor: pointer;
+  }
+  #color::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 3px solid #000000;
+  }
+  #color::-moz-color-swatch {
+    border-radius: 50%;
+    border: 3px solid #000000;
+  }
 
 #size-wrapper {
     display: flex;
@@ -79,7 +123,7 @@ select:hover {
     height: var(--utility-comp-height);
     width: var(--utility-comp-width);
     border: 1px solid #999;
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 0 9px #999;
 }
 
@@ -96,7 +140,7 @@ select:hover {
 
 .active {
     background-color: #e4e4e4;
-    color: rgb(3, 145, 145);
+    color: rgb(255, 0, 0);
     font-weight: bold;
     box-shadow: 0 3px #696969;
     transform: translateY(4px);

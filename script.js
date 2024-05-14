@@ -3,6 +3,7 @@ const resetButton = document.getElementById("reset");
 const eraseButton = document.getElementById("erase");
 const paintButton = document.getElementById("paint");
 const select = document.getElementById("select");
+const colorPicker = document.getElementById("color");
 
 const buttons = [resetButton, eraseButton, paintButton];
 
@@ -36,14 +37,14 @@ const createGrid = (size) => {
     pixel.classList.add("square");
     pixel.addEventListener("click", (event) => {
       square.backgroundColor = paintColor;
-      square.borderColor = erase ? "lightgrey" : "black";
+      square.borderColor = erase ? "lightgrey" : paintColor;
       pixel.style.backgroundColor = square.backgroundColor;
       pixel.style.borderColor = square.borderColor;
     });
     pixel.addEventListener("mouseover", (event) => {
       if (paintActive) {
         square.backgroundColor = paintColor;
-        square.borderColor = erase ? "lightgrey" : "black";
+        square.borderColor = erase ? "lightgrey" : paintColor;
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
       }
@@ -51,7 +52,7 @@ const createGrid = (size) => {
     pixel.addEventListener("mouseout", (event) => {
       if (paintActive) {
         square.backgroundColor = paintColor;
-        square.borderColor = erase ? "lightgrey" : "black";
+        square.borderColor = erase ? "lightgrey" : paintColor;
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
       }
@@ -77,7 +78,7 @@ document.addEventListener("mouseup", (event) => {
 
 resetButton.addEventListener("click", () => {
   createGrid(lastSize);
-  paintColor = "black";
+  paintColor = paintColor;
   buttons.forEach(button => button.classList.remove("active"));
   paintButton.classList.add("active");
   erase = false;
@@ -93,8 +94,12 @@ eraseButton.addEventListener("click", () => {
 paintButton.addEventListener("click", () => {
   buttons.forEach((button) => button.classList.remove("active"));
   paintButton.classList.add("active");
-  paintColor = "black";
+  paintColor = colorPicker.value;
   erase = false;
 });
+
+colorPicker.addEventListener("change", (event) => {
+    paintColor = event.target.value;
+})
 
 createGrid(8);
