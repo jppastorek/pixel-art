@@ -1,0 +1,108 @@
+:root {
+    --utility-comp-width: 100px;
+    --utility-comp-height: 40px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EEEEEE;
+    font-family: 'Space Mono', monospace;
+    color: #072227;
+    gap: 40px;
+}
+
+#canvas {
+    height: 480px;
+    width: 480px;
+    border: 3px solid black;
+    margin: 10px;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+#canvas:hover {
+    cursor: pointer;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#tools {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+#size-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+select {
+    height: var(--utility-comp-height);
+    width: var(--utility-comp-width);
+    text-align: center;
+    font: inherit;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+.square {
+    border: 1px solid lightgrey;
+    background-color: white;
+}
+
+.button {
+    font: inherit;
+    height: var(--utility-comp-height);
+    width: var(--utility-comp-width);
+    border: 1px solid #999;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #d3d3d3;
+    color: black;
+}
+
+.button:active {
+    transform: translateY(4px);
+    box-shadow: 0 3px #696969;
+}
+
+.active {
+    background-color: #e4e4e4;
+    color: rgb(3, 145, 145);
+    font-weight: bold;
+    box-shadow: 0 3px #696969;
+    transform: translateY(4px);
+}
+
+.inactive {
+    background-color: lightgrey;
+    color: black;
+}
