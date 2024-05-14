@@ -124,7 +124,7 @@ select:hover {
     width: var(--utility-comp-width);
     border: 1px solid #999;
     border-radius: 10px;
-    box-shadow: 0 9px #999;
+    box-shadow: 0 9px 3px #999;
 }
 
 .button:hover {
@@ -142,7 +142,7 @@ select:hover {
     background-color: #e4e4e4;
     color: rgb(255, 0, 0);
     font-weight: bold;
-    box-shadow: 0 3px #696969;
+    box-shadow: inset 0 3px 3px #696969;
     transform: translateY(4px);
 }
 

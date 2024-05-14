@@ -4,22 +4,25 @@ const eraseButton = document.getElementById("erase");
 const paintButton = document.getElementById("paint");
 const select = document.getElementById("select");
 const colorPicker = document.getElementById("color");
+const getColorButton = document.getElementById("getColor");
 
-
-// need to build a color dropper, a color saver, and undo/redo
+// need to build a color saver and undo/redo
 // this will probably require moving to react to save state
 // also need to optimize for mobile
+// also want to add an option to fill background
+// eventually would like to add change canvas size
 
-const buttons = [resetButton, eraseButton, paintButton];
+const buttons = [resetButton, eraseButton, paintButton, getColorButton];
 
 let lastSize = 8;
 let paintActive = false;
-let paintColor = "black";
+let paintColor = "#000000";
 let erase = false;
+let getColor = false;
 
 class Square {
   constructor() {
-    this.backgroundColor = "white";
+    this.backgroundColor = "#ffffff";
     this.borderColor = "lightgrey";
   }
 }
@@ -41,14 +44,19 @@ const createGrid = (size) => {
     let pixel = document.createElement("div");
     pixel.classList.add("square");
     pixel.addEventListener("click", (event) => {
-      square.backgroundColor = erase ? "white" : paintColor;
-      square.borderColor = erase ? "lightgrey" : paintColor;
-      pixel.style.backgroundColor = square.backgroundColor;
-      pixel.style.borderColor = square.borderColor;
+      if (getColor) {
+        paintColor = square.backgroundColor;
+        colorPicker.value = square.backgroundColor;
+      } else {
+        square.backgroundColor = erase ? "#ffffff" : paintColor;
+        square.borderColor = erase ? "lightgrey" : paintColor;
+        pixel.style.backgroundColor = square.backgroundColor;
+        pixel.style.borderColor = square.borderColor;
+      }
     });
     pixel.addEventListener("mouseover", (event) => {
       if (paintActive) {
-        square.backgroundColor = erase ? "white" : paintColor;
+        square.backgroundColor = erase ? "#ffffff" : paintColor;
         square.borderColor = erase ? "lightgrey" : paintColor;
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
@@ -56,7 +64,7 @@ const createGrid = (size) => {
     });
     pixel.addEventListener("mouseout", (event) => {
       if (paintActive) {
-        square.backgroundColor = erase ? "white" : paintColor;
+        square.backgroundColor = erase ? "#ffffff" : paintColor;
         square.borderColor = erase ? "lightgrey" : paintColor;
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
@@ -73,7 +81,7 @@ select.addEventListener("change", (event) => {
 });
 
 canvas.addEventListener("mousedown", (event) => {
-  paintActive = true;
+  if (!getColor) paintActive = true;
   event.preventDefault();
 });
 
@@ -84,7 +92,7 @@ document.addEventListener("mouseup", (event) => {
 resetButton.addEventListener("click", () => {
   createGrid(lastSize);
   paintColor = paintColor;
-  buttons.forEach(button => button.classList.remove("active"));
+  buttons.forEach((button) => button.classList.remove("active"));
   paintButton.classList.add("active");
   erase = false;
 });
@@ -94,6 +102,7 @@ eraseButton.addEventListener("click", () => {
   eraseButton.classList.add("active");
   paintColor = "white";
   erase = true;
+  getColor = false;
 });
 
 paintButton.addEventListener("click", () => {
@@ -101,10 +110,19 @@ paintButton.addEventListener("click", () => {
   paintButton.classList.add("active");
   paintColor = colorPicker.value;
   erase = false;
+  getColor = false;
+});
+
+getColorButton.addEventListener("click", () => {
+  buttons.forEach((button) => button.classList.remove("active"));
+  getColorButton.classList.add("active");
+  getColor = true;
+  paintActive = false;
+  erase = false;
 });
 
 colorPicker.addEventListener("change", (event) => {
-    paintColor = event.target.value;
-})
+  paintColor = event.target.value;
+});
 
 createGrid(8);
