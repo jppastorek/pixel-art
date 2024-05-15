@@ -21,12 +21,12 @@ body {
 }
 
 #canvas {
-    height: 480px;
-    width: 480px;
+    height: 400px;
+    width: 400px;
     border: 2px solid black;
     border-radius: 3px;
-    margin: 10px;
     display: grid;
+    margin-bottom: 5px;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
     cursor: pointer;
@@ -43,16 +43,16 @@ body {
 
 #utilities {
     display: flex;
-    flex-direction: column;
-    gap: 50px;
+    flex-direction: row;
+    gap: 20px;
     align-items: center;
     justify-content: center;
 }
 
 #tools {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: row;
+    gap: 10px;
     align-items: center;
     justify-content: center;
 }
@@ -78,26 +78,27 @@ body {
     -moz-appearance: none;
     appearance: none;
     background-color: transparent;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     border: none;
     cursor: pointer;
   }
   #color::-webkit-color-swatch {
-    border-radius: 50%;
+    border-radius: 15%;
     border: 3px solid #000000;
   }
   #color::-moz-color-swatch {
-    border-radius: 50%;
+    border-radius: 15%;
     border: 3px solid #000000;
   }
 
-#size-wrapper {
+#size {
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
     justify-content: center;
+    margin-top: 10px;
 }
 
 select {
@@ -122,7 +123,7 @@ select:hover {
     width: var(--utility-comp-width);
     border: 1px solid #999;
     border-radius: 10px;
-    box-shadow: 0 9px 3px #999;
+    box-shadow: 0 9px 1px #999;
 }
 
 .button:hover {

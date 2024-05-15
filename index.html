@@ -7,24 +7,23 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div id="utilities">
-      <div id="tools">
-        <h3>Tools</h3>
-        <button id="paint" class="button active">paint</button>
-        <button id="erase" class="button">erase</button>
-        <button id="getColor" class="button">get color</button>
-      </div>
-      <div id="colors">
-        <h3>Color</h3>
-        <input type="color" id="color" name="color" value="#000000">
-      </div>
-    </div>
     <div id="wrapper">
       <h1>Pixel Art</h1>
       <div id="canvas"></div>
-      <div id="size-wrapper">
+      <div id="utilities">
+        <div id="tools">
+          <button id="paint" class="button active">paint</button>
+          <button id="erase" class="button">erase</button>
+          <button id="getColor" class="button">get color</button>
+        </div>
+        <div id="colors">
+          <input type="color" id="color" name="color" value="#ff0000">
+        </div>
+      </div>
+      <div id="size">
         <select id="select">
-          <option value="8">8x8</option>
+          <option value="4">4x4</option>
+          <option value="8" selected>8x8</option>
           <option value="16">16x16</option>
           <option value="32">32x32</option>
           <option value="64">64x64</option>

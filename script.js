@@ -16,7 +16,7 @@ const buttons = [resetButton, eraseButton, paintButton, getColorButton];
 
 let lastSize = 8;
 let paintActive = false;
-let paintColor = "#000000";
+let paintColor = "#ff0000";
 let erase = false;
 let getColor = false;
 
@@ -61,11 +61,25 @@ const createGrid = (size) => {
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
       }
+      if (!erase && !paintActive && !getColor) {
+        pixel.style.backgroundColor = paintColor;
+        // BUG want to see a diff border if preview and color match
+        if (pixel.style.backgroundColor == paintColor){
+          pixel.style.borderColor = "lightgrey";
+        }
+        else {
+          pixel.style.borderColor = paintColor;
+        }
+      }
     });
     pixel.addEventListener("mouseout", (event) => {
       if (paintActive) {
         square.backgroundColor = erase ? "#ffffff" : paintColor;
         square.borderColor = erase ? "lightgrey" : paintColor;
+        pixel.style.backgroundColor = square.backgroundColor;
+        pixel.style.borderColor = square.borderColor;
+      }
+      if (!erase && !paintActive && !getColor) {
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
       }
@@ -91,10 +105,11 @@ document.addEventListener("mouseup", (event) => {
 
 resetButton.addEventListener("click", () => {
   createGrid(lastSize);
-  paintColor = paintColor;
+  paintColor = colorPicker.value;
   buttons.forEach((button) => button.classList.remove("active"));
   paintButton.classList.add("active");
   erase = false;
+  getColor = false;
 });
 
 eraseButton.addEventListener("click", () => {
