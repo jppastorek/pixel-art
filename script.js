@@ -5,10 +5,10 @@ const paintButton = document.getElementById("paint");
 const select = document.getElementById("select");
 const colorPicker = document.getElementById("color");
 const getColorButton = document.getElementById("getColor");
+let grid = [];
+const state = [];
 
 // need to build a color saver and undo/redo
-// this will probably require moving to react to save state
-// also need to optimize for mobile
 // also want to add an option to fill background
 // eventually would like to add change canvas size
 
@@ -26,10 +26,6 @@ class Square {
     this.borderColor = "lightgrey";
   }
 }
-
-let grid = [];
-
-let square = new Square();
 
 const createGrid = (size) => {
   grid = [];
@@ -52,6 +48,7 @@ const createGrid = (size) => {
         square.borderColor = erase ? "lightgrey" : paintColor;
         pixel.style.backgroundColor = square.backgroundColor;
         pixel.style.borderColor = square.borderColor;
+        // state.push([...grid]);
       }
     });
     pixel.addEventListener("mouseover", (event) => {
@@ -64,10 +61,9 @@ const createGrid = (size) => {
       if (!erase && !paintActive && !getColor) {
         pixel.style.backgroundColor = paintColor;
         // BUG want to see a diff border if preview and color match
-        if (pixel.style.backgroundColor == paintColor){
+        if (pixel.style.backgroundColor == paintColor) {
           pixel.style.borderColor = "lightgrey";
-        }
-        else {
+        } else {
           pixel.style.borderColor = paintColor;
         }
       }
@@ -86,6 +82,7 @@ const createGrid = (size) => {
     });
     canvas.appendChild(pixel);
   });
+  state.push([...grid])
 };
 
 select.addEventListener("change", (event) => {
@@ -101,6 +98,8 @@ canvas.addEventListener("mousedown", (event) => {
 
 document.addEventListener("mouseup", (event) => {
   paintActive = false;
+  state.push([...grid]);
+  console.log(state);
 });
 
 resetButton.addEventListener("click", () => {
